@@ -1,0 +1,26 @@
+﻿@model List<About>
+
+
+
+<h2>Hakkımızda Veri Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Hakkımızda Başlığı</th>
+        <th>Etkinleştir</th>
+        <th>Devre Dışı Bırak</th>
+        @foreach (var about in Model)
+        {
+        <tr>
+            <td>@about.AboutId</td>
+            <td>Başlık</td>
+            <td><a href="#" class="btn btn-warning">Etkin</a></td>
+            <td><a href="#" class="btn btn-danger">Devre Dışı</a></td>
+        </tr>
+        }
+    </tr>
+</table>
+
+@await Html.PartialAsync("AboutPartials/_AboutPartial")
+

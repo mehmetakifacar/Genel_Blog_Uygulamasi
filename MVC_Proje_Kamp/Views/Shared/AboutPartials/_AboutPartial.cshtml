@@ -1,0 +1,31 @@
+﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Yeni Hakkımızda Yazı Girişi
+</button>
+
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Hakkımızda Metin Girişi</h2>
+            </div>
+            <form asp-action="Add" asp-controller="About" method="post">
+                <div class="modal-body">
+                    <label>Hakkımızda Metin 1</label>
+                    <input type="text" name="Details1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Metin 2</label>
+                    <input type="text" name="Details2" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Görsel 1</label>
+                    <input type="text" name="Image1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Görsel 2</label>
+                    <input type="text" name="Image2" class="form-control" />
+                    <br />
+                    <button class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

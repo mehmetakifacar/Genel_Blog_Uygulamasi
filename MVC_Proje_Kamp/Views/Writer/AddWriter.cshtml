@@ -1,0 +1,34 @@
+﻿@model Writer
+
+@using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.WriterName, "Yazar Adı")
+        @Html.TextBoxFor(m => m.WriterName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.WriterName)
+        <br />
+        @Html.LabelFor(m => m.WriterSurname, "Yazar Soyadı")
+        @Html.TextBoxFor(m => m.WriterSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.WriterSurname)
+        <br />
+        @Html.LabelFor(m => m.Mail, "E-mail Adresi")
+        @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Mail)
+        <br />
+        @Html.LabelFor(m => m.Password, "Şifre")
+        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Image, "Yazar Görsel Linki")
+        @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.WriterTitle, "Meslek")
+        @Html.TextBoxFor(m => m.WriterTitle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.WriterTitle)
+        <br />
+        @Html.LabelFor(m => m.About, "Hakkında")
+        @Html.TextBoxFor(m => m.About, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.About)
+        <br />
+        <button class="btn btn-info">Yazar Ekle</button>
+    </div>
+}

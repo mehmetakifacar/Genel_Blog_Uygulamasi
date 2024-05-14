@@ -1,0 +1,20 @@
+﻿@model Category
+
+<h1>Kategori Ekleme Sayfası</h1>
+<br />
+
+@using (Html.BeginForm("AddCategory", "AdminCategory", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryName, "Kategori Adı")
+        @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CategoryName)
+        <br>
+        @Html.LabelFor(m => m.Description, "Açıklama")
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description)
+        <br />
+        <button class="btn btn-success">Kaydet</button>
+    </div>
+
+}

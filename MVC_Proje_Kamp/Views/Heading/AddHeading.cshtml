@@ -1,0 +1,21 @@
+﻿@model Heading
+
+<br />
+@using (Html.BeginForm("AddHeading", "Heading", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.HeadingName, "Başlık Adı")
+        @Html.TextBoxFor(m => m.HeadingName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.HeadingName)
+        <br />
+        @Html.LabelFor(m => m.CategoryId, "Kategori")
+        @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.categories,
+                new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.WriterId, "Yazar")
+        @Html.DropDownListFor(m => m.WriterId, (List<SelectListItem>)ViewBag.writers,
+                new { @class = "form-control" })
+        <br />
+        <button class="btn btn-info">Başlık Ekle</button>
+    </div>
+}

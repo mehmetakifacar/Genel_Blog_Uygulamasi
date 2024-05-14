@@ -1,0 +1,19 @@
+﻿@model Category
+
+<h1>Kategori Güncelleme</h1>
+
+@using (Html.BeginForm("Update", "AdminCategory", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId, "Kategori Id")
+        @Html.TextBoxFor(m => m.CategoryId, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.CategoryName, "Kategori Adı")
+        @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Description, "Kategori Açıklaması")
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}

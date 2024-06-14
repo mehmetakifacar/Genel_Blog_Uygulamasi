@@ -1,0 +1,19 @@
+﻿@model List<Content>
+
+<div class="timeline">
+    @foreach (var item in Model)
+    {
+        <div class="time-label">
+            <span class="bg-success">@item.ContentDate.ToString("dd-MMM-yyyy")</span>
+        </div>
+        <div>
+            <i class="fas fa-comment bg-yellow"></i>
+            <div class="timeline-item">
+                <h3 class="timeline-header"><a href="#">@item.Heading</a></h3>
+                <div class="timeline-body">
+                    @item.ContentValue
+                </div>
+            </div>
+        </div>
+    }
+</div>

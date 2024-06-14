@@ -10,9 +10,8 @@ namespace MVC_Proje_Kamp.Controllers
 {
     public class AdminCategoryController : Controller
     {
-
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "AdminScheme", Roles = "B")]
         public IActionResult Index()
         {
             var categoryValues = categoryManager.GetCategoryList();

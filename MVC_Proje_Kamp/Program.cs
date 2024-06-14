@@ -1,9 +1,23 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.Concrete.Repositories;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+using MVC_Proje_Kamp.Controllers;
+using System.Security.Claims;
 
 namespace MVC_Proje_Kamp
 {
+
+
     public class Program
     {
         public static void Main(string[] args)
@@ -17,39 +31,57 @@ namespace MVC_Proje_Kamp
 
             var connectionString = configuration.GetConnectionString("mssqlconnection");
 
+
+
             builder.Services.AddControllersWithViews();
-
             builder.Services.AddSession();
-            //builder.Services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("RequireAdministratorRole", policy =>
-            //        policy.RequireRole("Administrator"));
-            //});
 
-            //builder.Services.AddIdentity<Admin, IdentityRole>()
-            //.AddEntityFrameworkStores<IdentityDbContext>()
-            //.AddDefaultTokenProviders();
+            builder.Services.AddScoped<AdminManager>();
+            builder.Services.AddScoped<IAdminDal, EfAdminDal>();
+
+            builder.Services.AddScoped<WriterManager>();
+            builder.Services.AddScoped<IWriterService, WriterManager>();
+            builder.Services.AddScoped<IWriterDal, EfWriterDal>();
+
+            builder.Services.AddScoped<IContentService, ContentManager>();
+            builder.Services.AddScoped<IContentDal, EfContentDal>();
 
 
-            //AddAuthentication
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            builder.Services.AddHttpContextAccessor();
+
+
+
+
+            builder.Services.AddAuthentication(options =>
             {
-                options.Cookie.Name = "Login";
-                options.LoginPath = "/Login/Index";
-                options.AccessDeniedPath = "/Login/Index";
+                options.DefaultScheme = "AdminScheme";
+            })
+            .AddCookie("AdminScheme", options =>
+             {
+                 options.LoginPath = "/Login/Index";
+                 options.AccessDeniedPath = "/Login/Index";
+                 options.Cookie.Name = "AdminScheme";
+             })
+            .AddCookie("WriterScheme", options =>
+            {
+                options.LoginPath = "/WriterPanelLogin/WriterLogin";
+                options.AccessDeniedPath = "/WriterPanelLogin/WriterLogin";
+                options.Cookie.Name = "WriterScheme";
+                options.LogoutPath = "/WriterPanelLogin/WriterLogOut";
             });
 
 
 
-            //Authorization Check
+
+            // Authorization Check
             builder.Services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
-                                 .RequireAuthenticatedUser()
-                                 .Build();
+                    .RequireAuthenticatedUser()
+                    .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
-
             });
+
 
 
             var app = builder.Build();
@@ -58,7 +90,6 @@ namespace MVC_Proje_Kamp
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -67,12 +98,9 @@ namespace MVC_Proje_Kamp
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseSession(); // Oturum yönetimini kullan
-
-
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllerRoute(
                 name: "Default",
@@ -80,7 +108,8 @@ namespace MVC_Proje_Kamp
 
             app.Run();
         }
-
-
     }
+
 }
+
+

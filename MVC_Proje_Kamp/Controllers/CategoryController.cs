@@ -12,7 +12,6 @@ namespace MVC_Proje_Kamp.Controllers
 {
     public class CategoryController : Controller
     {
-        AdminManager _adminManager = new AdminManager(new EfAdminDal());
         CategoryManager _ctManager = new CategoryManager(new EfCategoryDal());
 
         [AllowAnonymous]
@@ -25,12 +24,8 @@ namespace MVC_Proje_Kamp.Controllers
         {
             if (!HttpContext.User.IsInRole("A"))
             {
-                return Unauthorized(); // Yetkilendirme başarısız
+                return Unauthorized();
             }
-            //if (!_adminManager.Authenticate("A", HttpContext))
-            //{
-            //    return Unauthorized(); // Yetkilendirme başarısız
-            //}
             else
             {
                 var category = _ctManager.GetCategoryList();
@@ -51,7 +46,6 @@ namespace MVC_Proje_Kamp.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category p)
         {
-            //ctManager.CategoryAddBl(p);
             CategoryValidator ctvalidator = new CategoryValidator();
             ValidationResult results = ctvalidator.Validate(p);
             if (results.IsValid)
@@ -71,3 +65,5 @@ namespace MVC_Proje_Kamp.Controllers
         }
     }
 }
+
+

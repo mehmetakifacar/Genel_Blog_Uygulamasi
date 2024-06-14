@@ -137,23 +137,3 @@
 
 
 
-@* <table class="table table-bordered">
-    <tr>
-        <th>Başlık Adı</th>
-        <th>Başlık Tarihi</th>
-        <th>Kategori</th>
-        <th>Yazar</th>
-    </tr>
-
-    @foreach (var heading in Model)
-    {
-        <tr>
-            <td>@heading.HeadingName</td>
-            <td>@heading.HeadingDate</td>
-            <td>@heading.CategoryId</td> @*Kategori Adı Yazmalı*@
-@* <td>@heading.WriterId</td> *@ @*Yazar Adı Yazmalı*@
-@*  </tr> *@
-@*    }
-</table>
-<br />
-<a asp-action="AddHeading" asp-controller="Heading" class="btn btn-primary">Başlık Ekle</a> *@

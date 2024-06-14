@@ -1,5 +1,9 @@
 ﻿@model Writer
 
+@{
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
 @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
 {
     <div class="form-group">

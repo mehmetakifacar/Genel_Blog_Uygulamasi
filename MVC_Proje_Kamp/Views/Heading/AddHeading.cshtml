@@ -1,5 +1,9 @@
 ﻿@model Heading
 
+@{
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
 <br />
 @using (Html.BeginForm("AddHeading", "Heading", FormMethod.Post))
 {

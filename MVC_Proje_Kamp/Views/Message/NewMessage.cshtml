@@ -42,7 +42,7 @@
                             <h3 class="card-title">Yeni Mesaj Oluştur</h3>
                         </div>
                         <!-- /.card-header -->
-                        @using (Html.BeginForm("DraftDetails", "Draft", FormMethod.Post))
+                        @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
                         {
                             <div class="card-body">
                                 <div class="form-group">
@@ -54,16 +54,17 @@
                                 <div class="form-group">
                                     <textarea id="compose-textarea" name="Content" class="form-control" style="height: 300px"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-default" id="draftMessage">
+                                <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                                @* <button type="submit" class="btn btn-default" id="draftMessage">
                                     <i class="fas fa-pencil-alt"></i>  Taslaklara Kaydet
-                                </button>
+                                </button> *@
                             </div>
 
                         }
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <div class="float-right">
-                                <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                                
                                 <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> İptal Et</button>
                             </div>
 

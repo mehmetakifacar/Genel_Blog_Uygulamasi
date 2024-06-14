@@ -67,6 +67,7 @@ namespace MVC_Proje_Kamp.Controllers
             ValidationResult results = messageValidator.Validate(p);
             if (results.IsValid)
             {
+                p.SenderMail = "ceren@gmail.com";
                 messageManager.MessageAdd(p);
 
                 return RedirectToAction("Sendbox");

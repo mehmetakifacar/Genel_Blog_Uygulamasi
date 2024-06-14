@@ -11,7 +11,9 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdminService
     {
-        ClaimsPrincipal Login(Admin admin);
+        ClaimsPrincipal LogIn(Admin admin);
+        Task LogOutAsync(HttpContext httpContext);
         bool Authenticate(string roleName, HttpContext httpContext);
+
     }
 }

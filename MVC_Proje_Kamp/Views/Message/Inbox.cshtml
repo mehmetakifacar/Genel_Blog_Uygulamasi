@@ -76,7 +76,7 @@
                                             <td class="mailbox-star"><a asp-action="GetInboxDetails" asp-controller="Message" asp-route-id="@item.MessageId"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a asp-action="GetInboxDetails" asp-controller="Message" asp-route-id="@item.MessageId">@item.SenderMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> - @item.Content.Substring(0, 30)
+                                                <b>@item.Subject</b> - @(item.Content.Length > 30 ? item.Content.Substring(0, 30) + "..." : item.Content)
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@item.Date.ToString("dd-MM-yyyy")</td>

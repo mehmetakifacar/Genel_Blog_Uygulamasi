@@ -14,6 +14,8 @@ namespace DataAccessLayer.Concrete.Repositories
     {
         MvcContext context = new MvcContext();
         DbSet<Category> _object;
+
+
         public void Delete(Category p)
         {
             _object.Remove(p);

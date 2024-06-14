@@ -1,0 +1,20 @@
+﻿@model Content
+
+@{
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var headingId = ViewBag.Id;
+}
+
+<h1>İçerik Girşi</h1>
+<br />
+@using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.HeadingId, new { value = headingId })
+        @Html.LabelFor(m => m.ContentValue, "İçeriğinizi Yazın")
+        @Html.TextAreaFor(m => m.ContentValue, 4, 30, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ContentValue)
+        <br />
+        <button class="btn btn-info">Kaydet</button>
+    </div>
+}

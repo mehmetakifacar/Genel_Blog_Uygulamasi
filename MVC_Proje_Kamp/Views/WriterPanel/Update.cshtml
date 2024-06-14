@@ -1,0 +1,17 @@
+﻿@model Heading
+
+@using (Html.BeginForm("Update", "WriterPanel", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.HeadingId)
+        <br />
+        @Html.LabelFor(m => m.HeadingName, "Başlık Adı")
+        @Html.TextBoxFor(m => m.HeadingName, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Category, "Kategori")
+        @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.categories,
+                new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}
